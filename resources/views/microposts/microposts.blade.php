@@ -13,7 +13,6 @@
                 <p>{!! nl2br(e($micropost->content)) !!}</p>
             </div>
             <div>
-                @if (Auth::id() == $micropost->user_id)
                 <div class='btn-toolbar' role='toolbar'>
                     <div class='btn-group' role='group'>
                     @if (Auth::user()->is_favorite($micropost->id))
@@ -26,6 +25,7 @@
                         {!! Form::close() !!}
                     @endif
                     </div>
+                @if (Auth::id() == $micropost->user_id)
                     <div class='btn-group' role='group'>
                     {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
